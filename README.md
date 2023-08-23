@@ -21,7 +21,7 @@ Folder that watches when new videos are added and optimizes them.
 Example in Debian.
 
 ``` sh
-sudo apt install ffmpeg
+sudo apt install ffmpeg inotify-tools
 ```
 
 ### Install
