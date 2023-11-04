@@ -6,8 +6,8 @@ Small collection of Bash scripts to launch functionalities in folders when new f
 
 - [Video optimizer](#video-optimizer): Folder that watches when new videos are added and optimizes them.
 - [Battery hook](#battery-hook): Folder with custom scripts to be launched in different battery states.
-- [Image to avif](#image-to-avif): Folder that watches when new image (PNG, JPEG or WebP) are added and transform to AVIF format.
-- [Image to webp](#image-to-webp): Folder that watches when new image (PNG or JPEG) are added and transform to WebP format.
+- [Image to AVIF](#image-to-avif): Folder that watches when new image (PNG, JPEG or WebP) are added and transform to AVIF format.
+- [Image to WebP](#image-to-webp): Folder that watches when new image (PNG or JPEG) are added and transform to WebP format.
 
 ---
 
