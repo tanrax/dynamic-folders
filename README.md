@@ -6,6 +6,7 @@ Small collection of Bash scripts to launch functionalities in folders when new f
 
 - [Video optimizer](#video-optimizer): Folder that watches when new videos are added and optimizes them.
 - [Battery hook](#battery-hook): Folder with custom scripts to be launched in different battery states.
+- [Image to avif](#image-to-avif): Folder that watches when new image (PNG, JPEG or WebP) are added and transform to AVIF format.
 - [Image to webp](#image-to-webp): Folder that watches when new image (PNG or JPEG) are added and transform to WebP format.
 
 ---
@@ -215,6 +216,102 @@ Collaborations & Pull Requests
 
 ---
 
+## Image to AVIF
+
+Folder that watches when new image (PNG, JPEG or WebP) are added and transform to AVIF format.
+
+### Requirements
+
+- `avifenc`
+
+Example in Debian.
+
+``` sh
+sudo apt install libavif-bin
+```
+
+### Install
+
+
+``` sh
+curl -o bash-folders-image-to-avif https://raw.githubusercontent.com/tanrax/bash-folders/main/bash-folders-image-to-avif.sh && chmod +x bash-folders-image-to-avif && sudo rm -f /usr/local/bin/bash-folders-image-to-avif && sudo mv bash-folders-image-to-avif /usr/local/bin && echo "🎉 Successfully installed! 🎉"
+```
+
+Test
+
+``` sh
+bash-folders-image-to-avif --help
+```
+
+### Run
+
+``` sh
+bash-folders-image-to-avif --folder [folder to watch]
+```
+
+Example.
+
+``` sh
+mkdir image-to-avif-converter
+bash-folders-image-to-avif --folder image-to-avif-converter
+```
+
+And leave a image that you want to optimize in the folder `image-to-avif-converter`.
+
+---
+
+### Start at operating system startup
+
+#### Option 1: Service
+
+Create a file in `/etc/systemd/system/bash-folders-image-to-avif.service` with the following content.
+
+
+```ini
+[Unit]
+Description=Folder that watches when new image (PNG, JPEG or WebP) are added and transform to AVIF format.
+
+[Service]
+Restart=always
+RestartSec=5
+User=[user]
+ExecStart=bash-folders-image-to-avif --folder [folder to watch]
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Edit it to your needs.
+
+Recharge services.
+
+``` sh
+sudo systemctl daemon-reload
+```
+
+And activate it.
+
+``` sh
+sudo systemctl enable bash-folders-image-to-avif
+sudo systemctl start bash-folders-image-to-avif
+```
+
+#### Option 2: Cron
+
+Open.
+
+``` sh
+crontab -e
+```
+
+Add to document.
+
+``` sh
+@reboot bash-folders-image-to-avif --folder [folder to watch] >/dev/null 2>&1 &
+```
+
+---
+
 ## Image to WebP
 
 Folder that watches when new image (PNG or JPEG) are added and transform to WebP format.
@@ -311,7 +408,7 @@ Add to document.
 
 ## Collaborations & Pull Requests
 
-You must provide the documentation, as well as the scripts present, test that it works well and the script must pass a `shellcheck` (below you will find an example of execution). 
+You must provide the documentation, as well as the scripts present, test that it works well and the script must pass a `shellcheck` (below you will find an example of execution).
 
 ```sh
 shellcheck [script]
